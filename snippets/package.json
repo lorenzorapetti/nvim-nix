@@ -1,0 +1,18 @@
+{
+  "name": "personal-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      { "language": "lua", "path": "./lua.json" },
+      { "language": "nix", "path": "./nix.json" },
+      { "language": "erb", "path": "./erb.json" },
+      { "language": [ "javascript", "typescript", "javascriptreact", "typescriptreact", "vue", "svelte" ], "path": "./javascript.json" },
+      { "language": ["typescript", "typescriptreact"], "path": "./typescript.json" },
+      { "language": "ruby", "path": "./ruby.json" },
+      { "language": "rust", "path": "./rust.json" },
+      { "language": "all", "path": "./global.json" }
+    ]
+  }
+}
