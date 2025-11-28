@@ -21,6 +21,8 @@ mnw.lib.wrap pkgs {
     # LSPs
     nixd
     lua-language-server
+    dockerfile-language-server
+    docker-compose-language-service
 
     # Formatters
     stylua
@@ -43,6 +45,7 @@ mnw.lib.wrap pkgs {
       catppuccin-nvim
       mini-icons
       fyler-nvim
+      smart-splits-nvim
 
       # Treesitter
       nvim-treesitter.withAllGrammars

@@ -134,6 +134,8 @@ return {
         end,
       })
 
+      -- ############################## LSP CONFIGS ##############################
+
       vim.lsp.config('lua_ls', {
         on_init = function(client)
           if client.workspace_folders then
@@ -183,6 +185,8 @@ return {
       vim.lsp.enable {
         'lua_ls',
         'nixd',
+        'dockerls',
+        'docker_compose_language_service',
       }
     end,
   },
