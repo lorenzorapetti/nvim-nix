@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/ff335ced3ea3c449a848741de9d59f3f02b0a774";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     mnw.url = "github:Gerg-L/mnw";
   };
   outputs = {
