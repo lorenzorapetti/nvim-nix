@@ -85,6 +85,7 @@ mnw.lib.wrap pkgs {
       # UI
       lualine-nvim
       noice-nvim
+      markview-nvim
 
       # Utils
       persistence-nvim

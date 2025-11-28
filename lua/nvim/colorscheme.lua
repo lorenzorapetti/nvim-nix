@@ -8,6 +8,7 @@ require('catppuccin').setup {
     flash = true,
     grug_far = true,
     harpoon = true,
+    markview = true,
     mini = {
       enabled = true,
     },
