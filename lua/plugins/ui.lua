@@ -56,7 +56,7 @@ return {
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
           globalstatus = vim.o.laststatus == 3,
-          disabled_filetypes = { statusline = { 'snacks_dashboard', 'Fyler' } },
+          disabled_filetypes = { statusline = { 'snacks_dashboard', 'Fyler', 'codecompanion' } },
         },
         sections = {
           lualine_a = {

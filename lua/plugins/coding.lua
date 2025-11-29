@@ -96,7 +96,7 @@ return {
 
   {
     'blink.cmp',
-    event = { 'InsertEnter', 'CmdlineEnter' },
+    event = { 'BufReadPost', 'InsertEnter', 'CmdlineEnter' },
     before = function()
       LZN.trigger_load 'colorful-menu.nvim'
     end,
@@ -187,6 +187,10 @@ return {
 
         sources = {
           default = { 'lsp', 'path', 'snippets', 'buffer' },
+
+          per_filetype = {
+            codecompanion = { 'codecompanion' },
+          },
 
           providers = {
             snippets = {

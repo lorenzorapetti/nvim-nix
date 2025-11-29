@@ -145,6 +145,30 @@ Snacks.toggle.profiler():map '<leader>dpp'
 Snacks.toggle.profiler_highlights():map '<leader>dph'
 Snacks.toggle.zoom():map('<leader>wm'):map '<leader>uZ'
 Snacks.toggle.zen():map '<leader>uz'
+Snacks.toggle({
+  name = 'Copilot Suggestions (Buffer)',
+  get = function()
+    return not vim.b.copilot_suggestion_hidden
+  end,
+  set = function(value)
+    vim.b.copilot_suggestion_hidden = not value
+  end,
+}):map '<leader>uA'
+
+Snacks.toggle({
+  name = 'Copilot Suggestions',
+  get = function()
+    return not require('copilot.client').is_disabled()
+  end,
+  set = function(value)
+    local c = require 'copilot.command'
+    if value then
+      c.enable()
+    else
+      c.disable()
+    end
+  end,
+}):map '<leader>ua'
 
 if vim.lsp.inlay_hint then
   Snacks.toggle.inlay_hints():map '<leader>uh'

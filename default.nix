@@ -8,6 +8,13 @@ mnw.lib.wrap pkgs {
   enable = true;
   desktopEntry = false;
 
+  providers = {
+    nodeJs = {
+      enable = true;
+      package = pkgs.nodejs_24;
+    };
+  };
+
   aliases = [
     "v"
     "vi"
@@ -89,6 +96,10 @@ mnw.lib.wrap pkgs {
 
       # Utils
       persistence-nvim
+
+      # AI
+      codecompanion-nvim
+      copilot-lua
     ];
 
     dev.nvim = {

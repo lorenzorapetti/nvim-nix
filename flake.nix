@@ -13,7 +13,11 @@
     forAllSystems = function:
       lib.genAttrs
       supportedSystems
-      (system: function nixpkgs.legacyPackages.${system});
+      (system:
+        function (import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }));
   in {
     packages = forAllSystems (pkgs: {
       default = import ./default.nix {inherit pkgs mnw;};
