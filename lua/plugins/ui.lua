@@ -33,6 +33,8 @@ return {
     end,
     after = function()
       local icons = Util.icons
+      
+      vim.o.laststatus = vim.g.lualine_laststatus
 
       -- Custom Lualine component to show attached language server
       local lsp_clients = function()
