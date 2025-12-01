@@ -20,7 +20,7 @@ return {
   {
     'lualine.nvim',
     event = 'DeferredUIEnter',
-    before = function()
+    beforeAll = function()
       vim.g.lualine_laststatus = vim.o.laststatus
       if vim.fn.argc(-1) > 0 then
         -- set an empty statusline till lualine loads
@@ -29,11 +29,13 @@ return {
         -- hide the statusline on the starter page
         vim.o.laststatus = 0
       end
+    end,
+    before = function()
       LZN.trigger_load 'nvim-web-devicons'
     end,
     after = function()
       local icons = Util.icons
-      
+
       vim.o.laststatus = vim.g.lualine_laststatus
 
       -- Custom Lualine component to show attached language server
