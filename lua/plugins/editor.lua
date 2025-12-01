@@ -137,6 +137,7 @@ return {
             { '<leader>f', group = 'file/find' },
             { '<leader>g', group = 'git' },
             { '<leader>gh', group = 'hunks' },
+            { '<leader>o', group = 'other', icon = { icon = '󰈔', color = 'blue' } },
             { '<leader>q', group = 'quit' },
             { '<leader>s', group = 'search' },
             { '<leader>u', group = 'ui' },
