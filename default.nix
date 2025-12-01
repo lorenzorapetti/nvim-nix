@@ -78,6 +78,7 @@ mnw.lib.wrap pkgs {
       todo-comments-nvim
       harpoon2
       dial-nvim
+      other-nvim
 
       # LSP
       fidget-nvim
