@@ -187,6 +187,8 @@ return {
         'nixd',
         'dockerls',
         'docker_compose_language_service',
+        'vtsls',
+        'tailwindcss',
       }
     end,
   },

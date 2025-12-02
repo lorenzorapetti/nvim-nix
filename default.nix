@@ -30,6 +30,8 @@ mnw.lib.wrap pkgs {
     lua-language-server
     dockerfile-language-server
     docker-compose-language-service
+    vtsls
+    tailwindcss-language-server
 
     # Formatters
     stylua
