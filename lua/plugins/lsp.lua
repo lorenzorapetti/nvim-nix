@@ -189,6 +189,7 @@ return {
         'docker_compose_language_service',
         'vtsls',
         'tailwindcss',
+        'ruby_lsp',
       }
     end,
   },

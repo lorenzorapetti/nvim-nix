@@ -32,6 +32,7 @@ mnw.lib.wrap pkgs {
     docker-compose-language-service
     vtsls
     tailwindcss-language-server
+    ruby-lsp
 
     # Formatters
     stylua
