@@ -24,7 +24,7 @@ return {
           markdown = true,
           help = true,
         },
-        copilot_model = 'claude-3.5-sonnet',
+        copilot_model = 'gemini-3-pro-preview',
       }
     end,
   },
@@ -50,6 +50,17 @@ return {
               })
             end,
           },
+          http = {
+            copilot = function()
+              return require('codecompanion.adapters').extend('copilot', {
+                schema = {
+                  model = {
+                    default = 'claude-sonnet-4.5',
+                  },
+                },
+              })
+            end,
+          },
         },
         memory = {
           default = {
@@ -67,7 +78,7 @@ return {
         strategies = {
           chat = {
             name = 'copilot',
-            model = 'claude-3.5-sonnet',
+            model = 'gemini-3-pro-preview',
             opts = {
               ---Decorate the user message before it's sent to the LLM
               ---@param message string
@@ -76,6 +87,13 @@ return {
               ---@return string
               prompt_decorator = function(message, adapter, context)
                 return string.format([[<prompt>%s</prompt>]], message)
+              end,
+            },
+            roles = {
+              ---The header name for the LLM's messages
+              ---@type string|fun(adapter: CodeCompanion.Adapter): string
+              llm = function(adapter)
+                return 'CodeCompanion (' .. adapter.formatted_name .. ')'
               end,
             },
             slash_commands = {
