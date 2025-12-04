@@ -29,6 +29,8 @@ return {
     end,
   },
 
+  { 'codecompanion-spinner.nvim', lazy = true },
+
   {
     'codecompanion.nvim',
     cmd = { 'CodeCompanion', 'CodeCompanionActions', 'CodeCompanionToggle', 'CodeCompanionAdd', 'CodeCompanionChat' },
@@ -37,6 +39,7 @@ return {
       LZN.trigger_load 'markview.nvim'
       LZN.trigger_load 'copilot.lua'
       LZN.trigger_load 'blink.cmp'
+      LZN.trigger_load 'codecompanion-spinner.nvim'
     end,
     after = function()
       require('codecompanion').setup {
@@ -189,6 +192,9 @@ Output only the commit message, wrapped in a ```gitcommit``` code block.
               },
             },
           },
+        },
+        extensions = {
+          spinner = {},
         },
       }
 

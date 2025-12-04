@@ -103,6 +103,7 @@ mnw.lib.wrap pkgs {
 
       # AI
       codecompanion-nvim
+      codecompanion-spinner-nvim
       copilot-lua
     ];
 
