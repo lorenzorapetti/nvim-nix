@@ -44,9 +44,15 @@ Add this configuration as an input to your NixOS or home-manager flake:
     nixosConfigurations.yourhostname = nixpkgs.lib.nixosSystem {
       modules = [
         ({ pkgs, ... }: {
+          # With neovim nightly
           environment.systemPackages = [
             nvim-nix.packages.${pkgs.system}.default
           ];
+
+          # If you want to use stable neovim
+          # environment.systemPackages = [
+          #  nvim-nix.packages.${pkgs.system}.stable
+          # ];
         })
       ];
     };
@@ -61,7 +67,11 @@ Add this configuration as an input to your NixOS or home-manager flake:
 
 {
   home.packages = [
+    # With neovim nightly
     nvim-nix.packages.${pkgs.system}.default
+
+    # If you want to use stable neovim
+    # nvim-nix.packages.${pkgs.system}.stable
   ];
 }
 ```

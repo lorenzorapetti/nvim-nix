@@ -1,9 +1,10 @@
 {
   pkgs,
+  neovim,
   mnw,
 }:
 mnw.lib.wrap pkgs {
-  neovim = pkgs.neovim-unwrapped;
+  inherit neovim;
 
   enable = true;
   desktopEntry = false;

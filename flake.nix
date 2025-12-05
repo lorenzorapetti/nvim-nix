@@ -1,11 +1,15 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     mnw.url = "github:Gerg-L/mnw";
+
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
   outputs = {
     nixpkgs,
     mnw,
+    neovim-nightly,
     ...
   }: let
     lib = nixpkgs.lib;
@@ -20,7 +24,14 @@
         }));
   in {
     packages = forAllSystems (pkgs: {
-      default = import ./default.nix {inherit pkgs mnw;};
+      default = import ./default.nix {
+        inherit pkgs mnw;
+        inherit (neovim-nightly.packages.${pkgs.stdenv.system}) neovim;
+      };
+      stable = import ./default.nix {
+        inherit pkgs mnw;
+        neovim = pkgs.neovim-unwrapped;
+      };
     });
   };
 }
