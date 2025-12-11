@@ -16,7 +16,7 @@ return {
     after = function()
       require('conform').setup {
         default_format_opts = {
-          timeout_ms = 3000,
+          timeout_ms = 2000,
           async = false,
           quiet = false,
           lsp_format = 'fallback',
