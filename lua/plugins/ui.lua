@@ -18,6 +18,17 @@ return {
   },
 
   {
+    'mini.icons',
+    lazy = true,
+    beforeAll = function()
+      package.preload['nvim-web-devicons'] = function()
+        require('mini.icons').mock_nvim_web_devicons()
+        return package.loaded['nvim-web-devicons']
+      end
+    end,
+  },
+
+  {
     'lualine.nvim',
     event = 'DeferredUIEnter',
     beforeAll = function()
@@ -31,7 +42,7 @@ return {
       end
     end,
     before = function()
-      LZN.trigger_load 'nvim-web-devicons'
+      LZN.trigger_load 'mini.icons'
     end,
     after = function()
       local icons = Util.icons

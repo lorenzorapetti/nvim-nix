@@ -240,12 +240,12 @@ map({ 'n', 't' }, '<c-/>', function()
 end, { desc = 'Terminal (Root Dir)' })
 
 -- Pickers and explorers
-map('n', '<leader>e', function()
-  Snacks.explorer { cwd = Util.root() }
-end, { desc = 'Open Explorer (root dir)' })
-map('n', '<leader>E', function()
-  Snacks.explorer()
-end, { desc = 'Open Explorer (cwd)' })
+-- map('n', '<leader>e', function()
+--   Snacks.explorer { cwd = Util.root() }
+-- end, { desc = 'Open Explorer (root dir)' })
+-- map('n', '<leader>E', function()
+--   Snacks.explorer()
+-- end, { desc = 'Open Explorer (cwd)' })
 map('n', '<leader><space>', function()
   Snacks.picker.smart()
 end, { desc = 'Find Files (root dir)' })

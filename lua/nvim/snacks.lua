@@ -12,7 +12,8 @@ end
 Snacks.setup {
   indent = { enabled = false },
   explorer = {
-    replace_netrw = true,
+    enabled = false,
+    replace_netrw = false,
   },
   notifier = {},
   picker = {

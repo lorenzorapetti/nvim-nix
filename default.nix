@@ -55,7 +55,7 @@ mnw.lib.wrap pkgs {
       snacks-nvim
       catppuccin-nvim
       mini-icons
-      fyler-nvim
+      mini-files
 
       # Treesitter
       nvim-treesitter.withAllGrammars
