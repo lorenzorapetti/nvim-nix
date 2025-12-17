@@ -7,8 +7,14 @@ return {
     end,
     after = function()
       require('mini.files').setup {
+        windows = {
+          preview = false,
+        },
         options = {
           use_as_default_explorer = true,
+        },
+        mappings = {
+          synchronize = '<C-CR>',
         },
       }
 
@@ -69,9 +75,12 @@ return {
           vim.keymap.set('n', 'g.', toggle_dotfiles, { buffer = buf_id })
           vim.keymap.set('n', 'gX', ui_open, { buffer = buf_id, desc = 'OS open' })
           vim.keymap.set('n', 'gy', yank_path, { buffer = buf_id, desc = 'Yank path' })
+          vim.keymap.set('n', '<CR>', function()
+            require('mini.files').go_in { close_on_file = true }
+          end, { buffer = buf_id, desc = 'Open file' })
 
-          map_split(buf_id, '<C-s>', 'horizontal', false)
-          map_split(buf_id, '<C-v>', 'vertical', false)
+          map_split(buf_id, '<leader>-', 'horizontal', true)
+          map_split(buf_id, '<leader>\\', 'vertical', true)
         end,
       })
 
