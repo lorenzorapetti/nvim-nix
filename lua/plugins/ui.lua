@@ -42,7 +42,7 @@ return {
       end
     end,
     before = function()
-      LZN.trigger_load 'mini.icons'
+      LZN.trigger_load 'nvim-web-devicons'
     end,
     after = function()
       local icons = Util.icons
@@ -65,7 +65,15 @@ return {
         return ' ' .. table.concat(c, ' - ')
       end
 
-      require('lualine').setup {
+      local lualine = require 'lualine'
+
+      local function refresh_lualine()
+        lualine.refresh {
+          place = { 'statusline' },
+        }
+      end
+
+      lualine.setup {
         options = {
           theme = 'auto',
           component_separators = { left = '', right = '' },
@@ -115,7 +123,28 @@ return {
               symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
               update_in_insert = true,
             },
-            { 'harpoon2' },
+            {
+              function()
+                return require('noice').api.status.command.get()
+              end,
+              cond = function()
+                return package.loaded['noice'] and require('noice').api.status.command.has()
+              end,
+              color = function()
+                return { fg = Snacks.util.color 'Statement' }
+              end,
+            },
+            {
+              function()
+                local recording_register = vim.fn.reg_recording()
+
+                if recording_register == '' then
+                  return ''
+                else
+                  return 'Recording @' .. recording_register
+                end
+              end,
+            },
           },
           lualine_y = { lsp_clients },
           lualine_z = {
@@ -124,6 +153,14 @@ return {
           },
         },
       }
+
+      vim.api.nvim_create_autocmd('RecordingEnter', { callback = refresh_lualine })
+      vim.api.nvim_create_autocmd('RecordingLeave', {
+        callback = function()
+          local timer = vim.loop.new_timer()
+          timer:start(50, 0, vim.schedule_wrap(refresh_lualine))
+        end,
+      })
     end,
   },
 
