@@ -74,4 +74,11 @@ Snacks.setup {
     },
   },
   words = { enabled = true },
+  styles = {
+    zen = {
+      backdrop = {
+        transparent = false,
+      },
+    },
+  },
 }
