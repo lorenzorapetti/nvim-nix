@@ -4,6 +4,10 @@ return {
   {
     'codecompanion.nvim',
     cmd = { 'CodeCompanion', 'CodeCompanionActions', 'CodeCompanionToggle', 'CodeCompanionAdd', 'CodeCompanionChat' },
+    beforeAll = function()
+      -- Expand 'cc' into 'CodeCompanion' in the command line
+      vim.cmd [[cab cc CodeCompanion]]
+    end,
     before = function()
       LZN.trigger_load 'plenary.nvim'
       LZN.trigger_load 'markview.nvim'
@@ -167,9 +171,6 @@ Output only the commit message, wrapped in a ```gitcommit``` code block.
           spinner = {},
         },
       }
-
-      -- Expand 'cc' into 'CodeCompanion' in the command line
-      vim.cmd [[cab cc CodeCompanion]]
     end,
     keys = {
       { '<leader>aa', '<cmd>CodeCompanionChat toggle<cr>', desc = 'Toggle Code Companion Chat' },
