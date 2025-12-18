@@ -56,6 +56,7 @@ mnw.lib.wrap pkgs {
       catppuccin-nvim
       mini-icons
       mini-files
+      nui-nvim
 
       # Treesitter
       nvim-treesitter.withAllGrammars
@@ -71,6 +72,7 @@ mnw.lib.wrap pkgs {
       blink-cmp
       colorful-menu-nvim
       mini-surround
+      vscode-diff-nvim
 
       # Editor
       grug-far-nvim
