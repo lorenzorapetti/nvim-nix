@@ -34,6 +34,7 @@ mnw.lib.wrap pkgs {
     vtsls
     tailwindcss-language-server
     ruby-lsp
+    rust-analyzer
 
     # Formatters
     stylua
@@ -73,6 +74,8 @@ mnw.lib.wrap pkgs {
       colorful-menu-nvim
       mini-surround
       vscode-diff-nvim
+      rustaceanvim
+      crates-nvim
 
       # Editor
       grug-far-nvim
