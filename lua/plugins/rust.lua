@@ -56,9 +56,6 @@ return {
         },
       }
     end,
-    after = function()
-      require('rustaceanvim').setup()
-    end,
   },
 
   {
