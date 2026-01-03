@@ -4,6 +4,7 @@ return {
     event = 'DeferredUIEnter',
     before = function()
       LZN.trigger_load 'fidget.nvim'
+      LZN.trigger_load 'codesettings.nvim'
     end,
     after = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -135,6 +136,13 @@ return {
       }
 
       -- ############################## LSP CONFIGS ##############################
+
+      vim.lsp.config('*', {
+        before_init = function(_, config)
+          local codesettings = require 'codesettings'
+          codesettings.with_local_settings(config.name, config)
+        end,
+      })
 
       vim.lsp.config('lua_ls', {
         on_init = function(client)

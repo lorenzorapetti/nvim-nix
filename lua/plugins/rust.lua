@@ -3,6 +3,7 @@ return {
     'rustaceanvim',
     ft = 'rust',
     before = function()
+      LZN.trigger_load 'codesettings.nvim'
       vim.g.rustaceanvim = {
         server = {
           on_attach = function(_, bufnr)
@@ -15,6 +16,14 @@ return {
             vim.keymap.set('n', 'K', function()
               vim.cmd.RustLsp { 'hover', 'actions' }
             end, { desc = 'Hover Information', silent = true, buffer = bufnr })
+          end,
+          load_vscode_settings = false,
+          -- the global hook doesn't work when configuring rust-analyzer with rustaceanvim
+          settings = function(_, settings)
+            -- Note the exact way this is invoked to work with rustaceanvim:
+            -- - passed in settings are wrapped like `{ settings = settings }`
+            -- - the returned value is the `.settings` subtable
+            return require('codesettings').with_local_settings('rust-analyzer', { settings = settings }).settings
           end,
           default_settings = {
             -- rust-analyzer language server configuration
