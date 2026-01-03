@@ -49,7 +49,21 @@ mnw.lib.wrap pkgs {
     LZN.load('plugins')
   '';
 
-  plugins = {
+  plugins = let
+    codesettings-nvim = pkgs.vimUtils.buildVimPlugin {
+      pname = "codesettings.nvim";
+      version = "2026-01-03";
+      src = pkgs.fetchFromGitHub {
+        owner = "mrjones2014";
+        repo = "codesettings.nvim";
+        rev = "f9efb5a83bbadae95645e984e0df36b847aed394";
+        sha256 = "sha256-wE9FaxndnrVjhRBy7kyXkTDompfZlbJOy/SkboQ8ZPE=";
+      };
+      nvimSkipModules = [
+        "codesettings.build.cli"
+      ];
+    };
+  in {
     start = with pkgs.vimPlugins; [
       lz-n
       plenary-nvim
@@ -91,6 +105,7 @@ mnw.lib.wrap pkgs {
       # LSP
       fidget-nvim
       nvim-lspconfig
+      codesettings-nvim
 
       # Formatting
       conform-nvim
