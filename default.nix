@@ -25,6 +25,8 @@ mnw.lib.wrap pkgs {
   extraBinPath = with pkgs; [
     ripgrep
     fzf
+    fd
+    tree-sitter
 
     # LSPs
     nixd
