@@ -89,7 +89,7 @@ mnw.lib.wrap pkgs {
       blink-cmp
       colorful-menu-nvim
       mini-surround
-      vscode-diff-nvim
+      codediff-nvim
       rustaceanvim
       crates-nvim
 

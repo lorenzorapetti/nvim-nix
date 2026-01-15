@@ -1,6 +1,6 @@
 return {
   {
-    'vscode-diff.nvim',
+    'codediff.nvim',
     cmd = { 'CodeDiff' },
     beforeAll = function()
       -- Expand 'cd' into 'CodeDiff' in the command line
@@ -10,7 +10,7 @@ return {
       LZN.trigger_load 'nui.nvim'
     end,
     after = function()
-      require('vscode-diff').setup {
+      require('codediff').setup {
         diff = {
           disable_inlay_hints = true,
         },
