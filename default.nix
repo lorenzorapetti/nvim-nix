@@ -124,9 +124,10 @@ mnw.lib.wrap pkgs {
       persistence-nvim
 
       # AI
-      codecompanion-nvim
-      codecompanion-spinner-nvim
+      # codecompanion-nvim
+      # codecompanion-spinner-nvim
       copilot-lua
+      opencode-nvim
     ];
 
     dev.nvim = {
