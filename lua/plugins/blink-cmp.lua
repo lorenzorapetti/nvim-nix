@@ -106,7 +106,7 @@ return {
           providers = {
             snippets = {
               opts = {
-                search_paths = { vim.fn.stdpath 'config' .. '/snippets' },
+                search_paths = { mnw.configDir .. '/pack/mnw/start/nvim/snippets' },
               },
             },
           },
