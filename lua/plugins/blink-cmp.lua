@@ -15,8 +15,6 @@ return {
     end,
     after = function()
       require('blink-cmp').setup {
-        cmdline = { enabled = false },
-
         snippets = {
           preset = 'default',
         },
@@ -108,7 +106,7 @@ return {
           providers = {
             snippets = {
               opts = {
-                search_paths = { '~/nvim-nix/snippets' },
+                search_paths = { vim.fn.stdpath 'config' .. '/snippets' },
               },
             },
           },
