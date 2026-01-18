@@ -70,6 +70,7 @@ return {
         'scss',
         'ruby',
         'rust',
+        'nix',
       }
       require('nvim-treesitter').install(parsers)
     end,
