@@ -197,6 +197,7 @@ return {
         'docker_compose_language_service',
         'vtsls',
         'biome',
+        'eslint',
         'tailwindcss',
         'ruby_lsp',
       }

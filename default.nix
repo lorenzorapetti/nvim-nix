@@ -37,6 +37,7 @@ mnw.lib.wrap pkgs {
     tailwindcss-language-server
     ruby-lsp
     rust-analyzer
+    vscode-langservers-extracted
     eslint_d
     prettierd
     prettier
