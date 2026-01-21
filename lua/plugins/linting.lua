@@ -3,11 +3,18 @@ return {
     'nvim-lint',
     event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
     after = function()
+      local function check_root(files)
+        return function(ctx)
+          return vim.fs.find(files, { path = ctx.filename, upward = true, type = 'file' })[1]
+        end
+      end
+
       local opts = {
         -- Event to trigger linters
         events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
         linters_by_ft = {
           fish = { 'fish' },
+          ruby = { 'standardrb', 'rubocop' },
           -- Use the "*" filetype to run linters on all filetypes.
           -- ['*'] = { 'global linter' },
           -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
@@ -18,6 +25,12 @@ return {
         -- or add custom linters.
         ---@type table<string,table>
         linters = {
+          standardrb = {
+            condition = check_root { '.standard.yml', '.standard.yaml' },
+          },
+          rubocop = {
+            condition = check_root { '.rubocop.yml', '.rubocop.yaml' },
+          },
           -- -- Example of using selene only when a selene.toml file is present
           -- selene = {
           --   -- `condition` is another LazyVim extension that allows you to
