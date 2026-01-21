@@ -14,6 +14,39 @@ return {
       },
     },
     after = function()
+      local function find_root(files, ctx)
+        return vim.fs.find(files, { path = ctx.dirname, upward = true, type = 'file' })[1] ~= nil
+      end
+
+      local function check_root(files)
+        return function(self, ctx)
+          return find_root(files, ctx)
+        end
+      end
+
+      local js_formatters = {
+        'biome',
+        'prettierd',
+        'prettier',
+        stop_after_first = true,
+      }
+
+      local prettier_file_names = {
+        -- https://prettier.io/docs/en/configuration.html
+        '.prettierrc',
+        '.prettierrc.json',
+        '.prettierrc.yml',
+        '.prettierrc.yaml',
+        '.prettierrc.json5',
+        '.prettierrc.js',
+        '.prettierrc.cjs',
+        '.prettierrc.mjs',
+        '.prettierrc.toml',
+        'prettier.config.js',
+        'prettier.config.cjs',
+        'prettier.config.mjs',
+      }
+
       require('conform').setup {
         default_format_opts = {
           timeout_ms = 2000,
@@ -26,6 +59,36 @@ return {
           fish = { 'fish_indent' },
           sh = { 'shfmt' },
           nix = { 'alejandra' },
+          javascript = js_formatters,
+          javascriptreact = js_formatters,
+          typescript = js_formatters,
+          typescriptreact = js_formatters,
+          json = { 'prettierd', 'prettier', stop_after_first = true },
+          ruby = { 'standardrb', 'rubocop', stop_after_first = true },
+        },
+        formatters = {
+          injected = { options = { ignore_errors = true } },
+          biome = {
+            condition = check_root { 'biome.json', 'biome.jsonc' },
+            args = {
+              'check',
+              '--write',
+              '--formatter-enabled=true',
+              '--linter-enabled=false',
+              '--assist-enabled=true',
+              '--stdin-file-path',
+              '$FILENAME',
+            },
+          },
+          prettierd = {
+            condition = check_root(prettier_file_names),
+          },
+          standardrb = {
+            condition = check_root { '.standard.yml' },
+          },
+          rubocop = {
+            condition = check_root { '.rubocop.yml' },
+          },
         },
       }
 

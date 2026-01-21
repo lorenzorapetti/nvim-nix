@@ -37,6 +37,10 @@ mnw.lib.wrap pkgs {
     tailwindcss-language-server
     ruby-lsp
     rust-analyzer
+    eslint_d
+    prettierd
+    prettier
+    shfmt
 
     # Formatters
     stylua
