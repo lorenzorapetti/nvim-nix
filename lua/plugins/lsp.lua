@@ -196,6 +196,7 @@ return {
         'dockerls',
         'docker_compose_language_service',
         'vtsls',
+        'biome',
         'tailwindcss',
         'ruby_lsp',
       }
