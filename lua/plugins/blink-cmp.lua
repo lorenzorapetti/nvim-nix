@@ -10,9 +10,6 @@ return {
   {
     'blink-cmp-avante',
     lazy = true,
-    after = function()
-      require('blink-cmp-avante').setup()
-    end,
   },
 
   {

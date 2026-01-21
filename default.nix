@@ -123,7 +123,7 @@ mnw.lib.wrap pkgs {
       # UI
       lualine-nvim
       noice-nvim
-      markview-nvim
+      render-markdown-nvim
 
       # Utils
       persistence-nvim

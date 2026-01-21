@@ -6,7 +6,7 @@ return {
       LZN.trigger_load 'plenary.nvim'
       LZN.trigger_load 'nui.nvim'
       LZN.trigger_load 'blink.cmp'
-      LZN.trigger_load 'markview.nvim'
+      LZN.trigger_load 'render-markdown.nvim'
       LZN.trigger_load 'mini.icons'
     end,
     after = function()
