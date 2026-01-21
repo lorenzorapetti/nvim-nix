@@ -8,6 +8,7 @@ return {
     after = function()
       require('markview').setup {
         preview = {
+          filetypes = { 'markdown', 'Avante' },
           icon_provider = 'mini',
         },
       }

@@ -8,10 +8,19 @@ return {
   },
 
   {
+    'blink-cmp-avante',
+    lazy = true,
+    after = function()
+      require('blink-cmp-avante').setup()
+    end,
+  },
+
+  {
     'blink.cmp',
     event = { 'BufReadPost', 'InsertEnter', 'CmdlineEnter' },
     before = function()
       LZN.trigger_load 'colorful-menu.nvim'
+      LZN.trigger_load 'blink-cmp-avante'
     end,
     after = function()
       require('blink-cmp').setup {
@@ -97,17 +106,17 @@ return {
         signature = { enabled = true },
 
         sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer' },
-
-          per_filetype = {
-            codecompanion = { 'codecompanion' },
-          },
+          default = { 'avante', 'lsp', 'path', 'snippets', 'buffer' },
 
           providers = {
             snippets = {
               opts = {
                 search_paths = { mnw.configDir .. '/pack/mnw/start/nvim/snippets' },
               },
+            },
+            avante = {
+              module = 'blink-cmp-avante',
+              name = 'Avante',
             },
           },
         },
