@@ -8,6 +8,7 @@ return {
     end,
     after = function()
       require('render-markdown').setup {
+        patterns = { markdown = { disable = false } },
         completions = {
           lsp = { enabled = true },
         },

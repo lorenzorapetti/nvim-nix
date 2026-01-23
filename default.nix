@@ -81,7 +81,7 @@ mnw.lib.wrap pkgs {
       nui-nvim
 
       # Treesitter
-      nvim-treesitter-legacy.withAllGrammars
+      nvim-treesitter
       nvim-treesitter-textobjects
     ];
 
