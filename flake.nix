@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    mnw.url = "github:Gerg-L/mnw";
+    mnw.url = "github:Gerg-L/mnw/90f21dbb8e4a854be83c503c52d7dedb034c9211";
 
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
