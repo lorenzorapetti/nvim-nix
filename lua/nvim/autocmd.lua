@@ -133,3 +133,24 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
+
+-- Show absolute line number in insert mode
+vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+  group = augroup 'relativenumber_insert',
+  callback = function()
+    if vim.wo.relativenumber then
+      vim.wo.relativenumber = false
+      vim.wo.number = true
+    end
+  end,
+})
+
+-- Show relative line number in normal mode
+vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+  group = augroup 'relativenumber_normal',
+  callback = function()
+    if vim.wo.number then
+      vim.wo.relativenumber = true
+    end
+  end,
+})
