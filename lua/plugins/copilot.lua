@@ -24,7 +24,6 @@ return {
           markdown = true,
           help = true,
         },
-        copilot_model = 'gemini-3-pro-preview',
       }
     end,
   },
