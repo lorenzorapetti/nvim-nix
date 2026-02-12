@@ -227,6 +227,34 @@ map({ 'n', 'x' }, '<leader>y', function()
     vim.api.nvim_paste(choice, false, -1)
   end)
 end, { desc = 'Select Yank Ring' })
+map('n', '<leader>fy', function()
+  local full_path = vim.api.nvim_buf_get_name(0)
+  if full_path == '' then
+    return
+  end
+
+  local project_root = Util.root()
+  local relative_path = ''
+  if project_root then
+    relative_path = full_path:gsub(vim.pesc(project_root .. '/'), '')
+  else
+    relative_path = vim.fn.expand '%'
+  end
+
+  if relative_path ~= '' then
+    vim.fn.setreg('+', relative_path)
+    vim.notify('Yanked: ' .. relative_path, vim.log.levels.INFO)
+  end
+end, { desc = 'Yank current relative file path' })
+map('n', '<leader>fY', function()
+  local full_path = vim.fn.expand '%:p'
+  if full_path == '' then
+    return
+  end
+
+  vim.fn.setreg('+', full_path)
+  vim.notify('Yanked: ' .. full_path, vim.log.levels.INFO)
+end, { desc = 'Yank current full file path' })
 
 -- Terminal
 map('n', '<leader>fT', function()
