@@ -2,6 +2,7 @@
   pkgs,
   neovim,
   mnw,
+  fff-nvim,
 }:
 mnw.lib.wrap pkgs {
   inherit neovim;
@@ -71,19 +72,23 @@ mnw.lib.wrap pkgs {
       ];
     };
   in {
-    start = with pkgs.vimPlugins; [
-      lz-n
-      plenary-nvim
-      snacks-nvim
-      catppuccin-nvim
-      mini-icons
-      mini-files
-      nui-nvim
+    start = with pkgs.vimPlugins;
+      [
+        lz-n
+        plenary-nvim
+        snacks-nvim
+        catppuccin-nvim
+        mini-icons
+        mini-files
+        nui-nvim
 
-      # Treesitter
-      nvim-treesitter.withAllGrammars
-      nvim-treesitter-textobjects
-    ];
+        # Treesitter
+        nvim-treesitter.withAllGrammars
+        nvim-treesitter-textobjects
+      ]
+      ++ [
+        fff-nvim
+      ];
 
     # Anything that you're loading lazily should be put here
     opt = with pkgs.vimPlugins; [
