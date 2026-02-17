@@ -60,12 +60,12 @@ mnw.lib.wrap pkgs {
   plugins = let
     codesettings-nvim = pkgs.vimUtils.buildVimPlugin {
       pname = "codesettings.nvim";
-      version = "2026-01-03";
+      version = "2026-02-17";
       src = pkgs.fetchFromGitHub {
         owner = "mrjones2014";
         repo = "codesettings.nvim";
-        rev = "f9efb5a83bbadae95645e984e0df36b847aed394";
-        sha256 = "sha256-wE9FaxndnrVjhRBy7kyXkTDompfZlbJOy/SkboQ8ZPE=";
+        rev = "1e6c7f68abe0bda0d95353c572e31c86a910b459";
+        sha256 = "sha256-XC0oxNcQze2jcKdJ5lpDQte6aZXAc2XNOKgx/y/WKJY=";
       };
       nvimSkipModules = [
         "codesettings.build.cli"
