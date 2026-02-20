@@ -32,8 +32,7 @@ mnw.lib.wrap pkgs {
     # LSPs
     nixd
     lua-language-server
-    dockerfile-language-server
-    docker-compose-language-service
+    docker-language-server
     vtsls
     tailwindcss-language-server
     ruby-lsp

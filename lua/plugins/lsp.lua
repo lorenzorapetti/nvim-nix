@@ -193,8 +193,7 @@ return {
       vim.lsp.enable {
         'lua_ls',
         'nixd',
-        'dockerls',
-        'docker_compose_language_service',
+        'docker_language_server',
         'vtsls',
         'biome',
         'eslint',
