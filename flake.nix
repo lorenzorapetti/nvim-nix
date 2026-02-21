@@ -34,11 +34,12 @@
       default = import ./default.nix {
         inherit pkgs mnw;
         inherit (fff-nvim.packages.${pkgs.stdenv.system}) fff-nvim;
-        inherit (neovim-nightly.packages.${pkgs.stdenv.system}) neovim;
-      };
-      stable = import ./default.nix {
-        inherit pkgs mnw;
         neovim = pkgs.neovim-unwrapped;
+      };
+      nightly = import ./default.nix {
+        inherit pkgs mnw;
+        inherit (fff-nvim.packages.${pkgs.stdenv.system}) fff-nvim;
+        inherit (neovim-nightly.packages.${pkgs.stdenv.system}) neovim;
       };
     });
   };
