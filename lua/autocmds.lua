@@ -1,5 +1,5 @@
 local function augroup(name)
-  return vim.api.nvim_create_augroup('nvimnix_' .. name, { clear = true })
+  return vim.api.nvim_create_augroup('nvim_' .. name, { clear = true })
 end
 
 -- Check if we need to reload the file when it changed
@@ -151,6 +151,21 @@ vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
   callback = function()
     if vim.wo.number then
       vim.wo.relativenumber = true
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+
+    if name == 'nvim-treesitter' and kind == 'update' then
+      require('nvim-treesitter').update()
+    elseif name == 'fff.nvim' and (kind == 'install' or kind == 'update') then
+      if not ev.data.active then
+        vim.cmd.packadd 'fff.nvim'
+      end
+      require('fff.download').download_or_build_binary()
     end
   end,
 })

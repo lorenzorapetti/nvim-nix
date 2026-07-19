@@ -2,7 +2,6 @@
   pkgs,
   neovim,
   mnw,
-  fff-nvim,
 }:
 mnw.lib.wrap pkgs {
   inherit neovim;
@@ -28,6 +27,8 @@ mnw.lib.wrap pkgs {
     fzf
     fd
     tree-sitter
+    lazygit
+    fish # fish_indent
 
     # LSPs
     nixd
@@ -38,22 +39,32 @@ mnw.lib.wrap pkgs {
     ruby-lsp
     rust-analyzer
     vscode-langservers-extracted
+    bash-language-server
+    hyprls
     eslint_d
     prettierd
     prettier
     shfmt
 
-    # Formatters
+    # Formatters / linters
     stylua
     alejandra
+    biome
+    rubocop
   ];
 
-  # all files in the `lua/lazy` folder are now autoloaded, so no need
-  # for an init.lua in there
+  # Mirrors ~/.config/nvim/init.lua. Plugins are eagerly loaded by
+  # lua/plugins/init.lua; nix installs them (see `plugins` below).
   initLua = ''
-    require('nvim')
-    LZN = require('lz.n')
-    LZN.load('plugins')
+    vim.loader.enable()
+
+    Util = require 'util'
+
+    require 'options'
+    require 'ui2'
+    require 'keymaps'
+    require 'autocmds'
+    require 'plugins'
   '';
 
   plugins = let
@@ -70,73 +81,70 @@ mnw.lib.wrap pkgs {
         "codesettings.build.cli"
       ];
     };
+
+    # Not yet in nixpkgs.
+    splitjoin-nvim = pkgs.vimUtils.buildVimPlugin {
+      pname = "splitjoin.nvim";
+      version = "2026-07-19";
+      src = pkgs.fetchFromGitHub {
+        owner = "bennypowers";
+        repo = "splitjoin.nvim";
+        rev = "f3aaf61e5126668cb081af3bdd889a40ad7058e7";
+        hash = "sha256-q3X1bxFutoREMaKKBh15gkIIX/RCkPv0MS5H3YY8Hp0=";
+      };
+    };
   in {
+    # The config loads everything eagerly (see lua/plugins/init.lua), so all
+    # plugins are `start` plugins (always on the runtimepath).
     start = with pkgs.vimPlugins;
       [
-        lz-n
-        plenary-nvim
-        snacks-nvim
         catppuccin-nvim
+        plenary-nvim
         mini-icons
-        mini-files
-        nui-nvim
-
-        # Treesitter
+        which-key-nvim
+        snacks-nvim
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
-      ]
-      ++ [
-        fff-nvim
+        lualine-nvim
+
+        # Completion
+        blink-cmp
+        colorful-menu-nvim
+
+        # LSP / settings
+        codesettings-nvim
+        conform-nvim
+
+        # Coding
+        rustaceanvim
+        crates-nvim
+        mini-ai
+        mini-pairs
+        mini-surround
+        ts-comments-nvim
+        splitjoin-nvim
+
+        # Editor
+        trouble-nvim
+        gitsigns-nvim
+        flash-nvim
+        grug-far-nvim
+        harpoon2
+        todo-comments-nvim
+        overseer-nvim
+        oil-nvim
+        diffs-nvim
+
+        # UI
+        render-markdown-nvim
+
+        # Utils
+        persistence-nvim
+
+        # AI
+        copilot-lua
+        sidekick-nvim
       ];
-
-    # Anything that you're loading lazily should be put here
-    opt = with pkgs.vimPlugins; [
-      # Coding
-      mini-pairs
-      mini-ai
-      ts-comments-nvim
-      blink-cmp
-      colorful-menu-nvim
-      mini-surround
-      codediff-nvim
-      rustaceanvim
-      crates-nvim
-
-      # Editor
-      grug-far-nvim
-      flash-nvim
-      which-key-nvim
-      gitsigns-nvim
-      trouble-nvim
-      todo-comments-nvim
-      harpoon2
-      dial-nvim
-      other-nvim
-
-      # LSP
-      fidget-nvim
-      nvim-lspconfig
-      codesettings-nvim
-
-      # Formatting
-      conform-nvim
-
-      # Linting
-      nvim-lint
-
-      # UI
-      lualine-nvim
-      noice-nvim
-      render-markdown-nvim
-
-      # Utils
-      persistence-nvim
-
-      # AI
-      copilot-lua
-      avante-nvim
-      blink-cmp-avante
-    ];
 
     dev.nvim = {
       # you can use lib.fileset to reduce rebuilds here
@@ -145,7 +153,7 @@ mnw.lib.wrap pkgs {
       impure =
         # This is a hack it should be a absolute path
         # here it'll only work from this directory
-        "/' .. vim.uv.cwd()  .. '/nvim";
+        "/' .. vim.uv.cwd()  .. '";
     };
   };
 }
