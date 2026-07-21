@@ -68,20 +68,6 @@ mnw.lib.wrap pkgs {
   '';
 
   plugins = let
-    codesettings-nvim = pkgs.vimUtils.buildVimPlugin {
-      pname = "codesettings.nvim";
-      version = "2026-02-17";
-      src = pkgs.fetchFromGitHub {
-        owner = "mrjones2014";
-        repo = "codesettings.nvim";
-        rev = "1e6c7f68abe0bda0d95353c572e31c86a910b459";
-        sha256 = "sha256-XC0oxNcQze2jcKdJ5lpDQte6aZXAc2XNOKgx/y/WKJY=";
-      };
-      nvimSkipModules = [
-        "codesettings.build.cli"
-      ];
-    };
-
     # Not yet in nixpkgs.
     splitjoin-nvim = pkgs.vimUtils.buildVimPlugin {
       pname = "splitjoin.nvim";
@@ -96,55 +82,54 @@ mnw.lib.wrap pkgs {
   in {
     # The config loads everything eagerly (see lua/plugins/init.lua), so all
     # plugins are `start` plugins (always on the runtimepath).
-    start = with pkgs.vimPlugins;
-      [
-        catppuccin-nvim
-        plenary-nvim
-        mini-icons
-        which-key-nvim
-        snacks-nvim
-        nvim-treesitter.withAllGrammars
-        nvim-treesitter-textobjects
-        lualine-nvim
+    start = with pkgs.vimPlugins; [
+      catppuccin-nvim
+      plenary-nvim
+      mini-icons
+      which-key-nvim
+      snacks-nvim
+      nvim-treesitter.withAllGrammars
+      nvim-treesitter-textobjects
+      lualine-nvim
 
-        # Completion
-        blink-cmp
-        colorful-menu-nvim
+      # Completion
+      blink-cmp
+      colorful-menu-nvim
 
-        # LSP / settings
-        codesettings-nvim
-        conform-nvim
+      # LSP / settings
+      codesettings-nvim
+      conform-nvim
 
-        # Coding
-        rustaceanvim
-        crates-nvim
-        mini-ai
-        mini-pairs
-        mini-surround
-        ts-comments-nvim
-        splitjoin-nvim
+      # Coding
+      rustaceanvim
+      crates-nvim
+      mini-ai
+      mini-pairs
+      mini-surround
+      ts-comments-nvim
+      splitjoin-nvim
 
-        # Editor
-        trouble-nvim
-        gitsigns-nvim
-        flash-nvim
-        grug-far-nvim
-        harpoon2
-        todo-comments-nvim
-        overseer-nvim
-        oil-nvim
-        diffs-nvim
+      # Editor
+      trouble-nvim
+      gitsigns-nvim
+      flash-nvim
+      grug-far-nvim
+      harpoon2
+      todo-comments-nvim
+      overseer-nvim
+      oil-nvim
+      diffs-nvim
 
-        # UI
-        render-markdown-nvim
+      # UI
+      render-markdown-nvim
 
-        # Utils
-        persistence-nvim
+      # Utils
+      persistence-nvim
 
-        # AI
-        copilot-lua
-        sidekick-nvim
-      ];
+      # AI
+      copilot-lua
+      sidekick-nvim
+    ];
 
     dev.nvim = {
       # you can use lib.fileset to reduce rebuilds here

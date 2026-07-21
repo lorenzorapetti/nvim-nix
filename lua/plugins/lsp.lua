@@ -159,4 +159,5 @@ vim.lsp.enable {
   'standardrb',
   'bashls',
   'hyprls',
+  'nixd',
 }
