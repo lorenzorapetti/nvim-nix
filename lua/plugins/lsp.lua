@@ -160,4 +160,5 @@ vim.lsp.enable {
   'bashls',
   'hyprls',
   'nixd',
+  'yamlls',
 }

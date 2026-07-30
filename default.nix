@@ -40,6 +40,7 @@ mnw.lib.wrap pkgs {
     rust-analyzer
     vscode-langservers-extracted
     bash-language-server
+    yaml-language-server
     hyprls
     eslint_d
     prettierd
