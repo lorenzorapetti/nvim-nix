@@ -16,11 +16,7 @@ return {
     },
   },
   cmd = function(dispatchers, config)
-    local cmd = 'tsgo'
-    local local_cmd = (config or {}).root_dir and config.root_dir .. '/node_modules/.bin/tsgo'
-    if local_cmd and vim.fn.executable(local_cmd) == 1 then
-      cmd = local_cmd
-    end
+    local cmd = Util.lsp.resolve_tsgo_cmd((config or {}).root_dir) or 'tsgo'
     return vim.lsp.rpc.start({ cmd, '--lsp', '--stdio' }, dispatchers)
   end,
   filetypes = {
@@ -50,8 +46,8 @@ return {
       return
     end
 
-    -- Only enable tsgo if it's locally installed for now
-    if vim.fn.executable(project_root .. '/node_modules/.bin/tsgo') ~= 1 then
+    -- Only enable if tsgo (or, for TypeScript v7+, tsc) is locally installed
+    if not Util.lsp.resolve_tsgo_cmd(project_root) then
       return
     end
 

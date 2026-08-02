@@ -33,8 +33,8 @@ return {
       return
     end
 
-    -- Don't enable if using tsgo
-    if vim.fn.executable(exe) ~= 1 or vim.fn.executable(project_root .. '/node_modules/.bin/tsgo') == 1 then
+    -- Don't enable if using tsgo (or, for TypeScript v7+, tsc)
+    if vim.fn.executable(exe) ~= 1 or Util.lsp.resolve_tsgo_cmd(project_root) then
       return
     end
     -- project is standard TS, not deno
