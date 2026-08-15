@@ -68,19 +68,7 @@ mnw.lib.wrap pkgs {
     require 'plugins'
   '';
 
-  plugins = let
-    # Not yet in nixpkgs.
-    splitjoin-nvim = pkgs.vimUtils.buildVimPlugin {
-      pname = "splitjoin.nvim";
-      version = "2026-07-19";
-      src = pkgs.fetchFromGitHub {
-        owner = "bennypowers";
-        repo = "splitjoin.nvim";
-        rev = "f3aaf61e5126668cb081af3bdd889a40ad7058e7";
-        hash = "sha256-q3X1bxFutoREMaKKBh15gkIIX/RCkPv0MS5H3YY8Hp0=";
-      };
-    };
-  in {
+  plugins = {
     # The config loads everything eagerly (see lua/plugins/init.lua), so all
     # plugins are `start` plugins (always on the runtimepath).
     start = with pkgs.vimPlugins; [
@@ -108,7 +96,7 @@ mnw.lib.wrap pkgs {
       mini-pairs
       mini-surround
       ts-comments-nvim
-      splitjoin-nvim
+      splitjoin-vim
 
       # Editor
       trouble-nvim
