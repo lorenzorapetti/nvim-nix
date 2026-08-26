@@ -114,6 +114,7 @@ mnw.lib.wrap pkgs {
 
       # Utils
       persistence-nvim
+      obsidian-nvim
 
       # AI
       copilot-lua

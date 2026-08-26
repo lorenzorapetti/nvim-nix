@@ -49,6 +49,7 @@ require 'plugins/oil'
 require 'plugins/copilot'
 require 'plugins/sidekick'
 require 'plugins/splitjoin'
+require 'plugins/obsidian'
 require 'plugins/which-key'
 
 vim.api.nvim_set_hl(0, 'FloatBorder', { bg = '#1E1E2E', fg = '#89B4FA', force = true })

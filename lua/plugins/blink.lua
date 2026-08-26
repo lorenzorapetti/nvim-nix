@@ -104,5 +104,11 @@ cmp.setup {
 
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer' },
+    per_filetype = {
+      markdown = {
+        inherit_defaults = true,
+        'dictionary',
+      },
+    },
   },
 }
