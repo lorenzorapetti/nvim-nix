@@ -107,7 +107,6 @@ cmp.setup {
     per_filetype = {
       markdown = {
         inherit_defaults = true,
-        'dictionary',
       },
     },
   },
