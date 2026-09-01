@@ -158,7 +158,6 @@ vim.lsp.enable {
   'rubocop',
   'standardrb',
   'bashls',
-  'hyprls',
   'nixd',
   'yamlls',
 }

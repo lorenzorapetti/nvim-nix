@@ -41,7 +41,6 @@ mnw.lib.wrap pkgs {
     vscode-langservers-extracted
     bash-language-server
     yaml-language-server
-    hyprls
     eslint_d
     prettierd
     prettier
@@ -118,7 +117,6 @@ mnw.lib.wrap pkgs {
 
       # AI
       copilot-lua
-      sidekick-nvim
     ];
 
     dev.nvim = {
